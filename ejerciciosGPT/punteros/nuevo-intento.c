@@ -12,10 +12,10 @@ void swap_string(char* frase) {
 
     int j = 0;
 
-    int letras = strlen(frase);
+    int largo = strlen(frase);
 
-    if (frase[letras - 1] == '\n') {
-        frase[letras - 1] = '\0';  
+    if (frase[largo - 1] == '\n') {
+        frase[largo - 1] = '\0';  
     }
 
     for (int i = 0; i < 50; i++) {
@@ -35,13 +35,13 @@ void swap_string(char* frase) {
 
     buf = strlen(palabra1) + strlen(palabra2);
 
-    char buffer[buf + 1];
-    strcpy(buffer, palabra2);
-    buffer[strlen(buffer)] = ' ';
-    strcat(buffer, palabra1);
+    char fraseNueva[buf + 1];
+    strcpy(fraseNueva, palabra2);
+    fraseNueva[strlen(palabra2)] = ' ';
+    strcat(fraseNueva, palabra1);
 
     swaped = palabra2;
-    printf("a ver: %s\n", buffer);
+    printf("a ver: %s\n", fraseNueva);
 }
 
 int main(void) {
@@ -54,7 +54,7 @@ int main(void) {
     fgets(frase, buf, stdin);
 
     printf("la frase ingresada es: %s\n", frase);
-    swap_string(frase); //si se elimina el malloc tambien se elimina esto
+    swap_string(frase); 
 
-    free(frase);
+    free(frase); //si se elimina el malloc tambien se elimina esto
 }
