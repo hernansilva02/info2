@@ -31,7 +31,8 @@ int main() {
         printf("Elija una opción\n");
         printf("1-Crear Archivo\n");
         printf("2-Realizar ejercicio\n");
-        printf("3-Salir\n");
+        printf("3-Leer el archivo\n");
+        printf("4-Salir\n");
 
         scanf("%d", &op);
 

@@ -45,8 +45,9 @@ void ejercicio(long id) {
             printf("Estado: %c\n", c.marca);
             printf("Tipo: %d\n", c.tipo);
             strcpy(c.descripcion, nueva_desc);
+            fwrite(&c, sizeof(piezas), 1, fp);
             break;
         case 'B':
-            
+             
     }
 }

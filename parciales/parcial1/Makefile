@@ -1,5 +1,5 @@
 main: main.o src/leer_archivo.o src/crear_archivo.o src/escritura.o src/ejercicio.o
-	gcc src/leer_archivo.o src/crear_archivo.o src/escritura.o main.o -o main
+	gcc src/leer_archivo.o src/crear_archivo.o src/escritura.o src/ejercicio.o main.o -o main
 
 main.o: main.c
 	gcc -c main.c
