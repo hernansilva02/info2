@@ -19,13 +19,41 @@
 #include "libs/escritura.h"
 #include "libs/leer_archivo.h"
 #include "libs/crear_archivo.h"
+#include "libs/ejercicio.h"
 #include <stdio.h>
 
 int main() {
+    int op = 0;
     long id = 0;
-    crear_archivo();
-    printf("Archivo creado\n");
-    id = escritura(&id);
-    leer_archivo();
-    return 0;
+    long nuevo_id = 0;
+
+    do {
+        printf("Elija una opción\n");
+        printf("1-Crear Archivo\n");
+        printf("2-Realizar ejercicio\n");
+        printf("3-Salir\n");
+
+        scanf("%d", &op);
+
+        switch (op) {
+            case 1:
+                crear_archivo();
+                id = escritura(&id);
+                break;
+            case 2:
+                printf("Seleccionar id: ");
+                scanf("%ld", &nuevo_id);
+
+                if (nuevo_id > id || nuevo_id < 0) {
+                    printf("No existe ese ID\n");
+                    op = 5;
+                }
+
+                ejercicio(nuevo_id); 
+                break;
+            case 3:
+                leer_archivo();
+                break;
+        }
+    }while (op != 4);
 }

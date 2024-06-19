@@ -9,6 +9,7 @@
 
 #include "../libs/piezas.h"
 #include "../libs/escritura.h"
+#include <string.h>
 #include <stdio.h>
 
 long escritura(long* id) {
@@ -24,14 +25,25 @@ long escritura(long* id) {
         return 1;
     }
 
+    printf("Archivo abierto\n");
+
+    system("clear");
+
     do {
-        while((c = getchar()) != '\n' && c != EOF); //limpia stdin
+        memset(&a, 0, sizeof(piezas));
 
         printf("Ingresar descripcion\n");
         fgets(a.descripcion, sizeof(a.descripcion), stdin);
 
+        if (strlen(a.descripcion) > 0 && a.descripcion[strlen(a.descripcion) - 1] == '\n') {
+            a.descripcion[strlen(a.descripcion) - 1] = '\0';
+        }
+
+
         printf("Ingresar estado\n");
         scanf(" %c", &a.marca);
+
+        while((c = getchar()) != '\n' && c != EOF); //limpia stdin
 
         printf("Ingresar tipo\n");
         scanf(" %d", &a.tipo);
@@ -46,6 +58,8 @@ long escritura(long* id) {
 
         printf("Desea seguir ingresando productos? 1-Si 2-No\n");
         scanf("%d", &option);
+
+        while((c = getchar()) != '\n' && c != EOF); //limpia stdin
     } while (option == 1);
 
     fclose(fp);
