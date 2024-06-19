@@ -20,6 +20,7 @@
 #include "libs/leer_archivo.h"
 #include "libs/crear_archivo.h"
 #include "libs/ejercicio.h"
+#include "libs/leer_bajas.h"
 #include <stdio.h>
 
 int main() {
@@ -27,12 +28,15 @@ int main() {
     long id = 0;
     long nuevo_id = 0;
 
+    system("clear");
+
     do {
         printf("Elija una opción\n");
         printf("1-Crear Archivo\n");
         printf("2-Realizar ejercicio\n");
-        printf("3-Leer el archivo\n");
-        printf("4-Salir\n");
+        printf("3-Mostrar los datos\n");
+        printf("4-Leer las bajas\n");
+        printf("5-Salir\n");
 
         scanf("%d", &op);
 
@@ -44,17 +48,14 @@ int main() {
             case 2:
                 printf("Seleccionar id: ");
                 scanf("%ld", &nuevo_id);
-
-                if (nuevo_id > id || nuevo_id < 0) {
-                    printf("No existe ese ID\n");
-                    op = 5;
-                }
-
                 ejercicio(nuevo_id); 
                 break;
             case 3:
                 leer_archivo();
                 break;
+            case 4:
+                leer_bajas();
+                break;
         }
-    }while (op != 4);
+    }while (op != 5);
 }

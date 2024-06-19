@@ -28,6 +28,7 @@ long escritura(long* id) {
     printf("Archivo abierto\n");
 
     system("clear");
+    while((c = getchar()) != '\n' && c != EOF); //limpia stdin
 
     do {
         memset(&a, 0, sizeof(piezas));
