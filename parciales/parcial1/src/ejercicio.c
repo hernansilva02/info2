@@ -52,10 +52,10 @@ void ejercicio(long id) {
     } else if (c.marca == 'B') {
         char* letra = c.descripcion;
         FILE* new_fp = fopen("baja.dat", "ab+");
-            if (new_fp == NULL) {
-                printf("No se puedo abrir/crear el archivo\n");
-                return;
-            }
+        if (new_fp == NULL) {
+            printf("No se puedo abrir/crear el archivo\n");
+            return;
+        }
         for (int i = 0; i < strlen(c.descripcion); i++) {
             if (*letra == 'a' || *letra == 'o' || *letra == 'A' || *letra == 'O') {
                 *letra = 'e';

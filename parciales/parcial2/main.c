@@ -1,15 +1,13 @@
 #include <stdio.h>
-#include "libs/ubicar.h"
 #include "libs/crear_archivo.h"
 #include "libs/escritura.h"
 #include "libs/ejercicio.h"
-#include "libs/cambio_mayusc.h"
+#include "libs/leer_archivo.h"
 
 int main() {
     long id_selec;
-    long id;
+    long id = 0;
     int op;
-    char nueva_cat[90];
 
     system("clear");
 
@@ -17,22 +15,26 @@ int main() {
         printf("Elija una opción\n");
         printf("1-Crear Archivo\n");
         printf("2-Realizar ejercicio\n");
-        printf("3-Salir\n");
+        printf("3-Leer archivo\n");
+        printf("4-Salir\n");
 
         scanf("%d", &op);
 
         switch (op) {
             case 1:
                 crear_archivo();
-                id = escritura(&id);
+                escritura(&id);
                 break;
             case 2:
                 printf("Seleccionar ID\n");
-                scanf("%ld", &id);
-
-                int i = 
+                scanf("%ld", &id_selec);
+                ejercicio(id_selec);
+                break;
+            case 3:
+                system("clear");
+                leer_archivo();
                 break;
         }
-    }while (op != 3);
+    }while (op != 4);
 
 }

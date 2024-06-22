@@ -42,7 +42,7 @@ long escritura(long* id) {
 
 
         printf("Ingresar estado\n");
-        scanf(" %ud", &a.estado);
+        scanf(" %u", &a.estado);
 
         while((c = getchar()) != '\n' && c != EOF); //limpia stdin
 

@@ -1,4 +1,5 @@
 #include "../libs/estruct.h"
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -19,28 +20,30 @@ int ejercicio(long id) {
 
     while ((fread(&b, sizeof(productos), 1, fp)) == 1 && b.id != id);
 
-    if (!feof(fp)) {
-        printf("No existe ese ID");
+    if (feof(fp)) {
+        printf("No existe ese ID\n");
         return 0;
     }
+
     
-    ptr = b.categoria;
+    strcpy(nuevaCat, b.categoria);
+    ptr = nuevaCat;
 
     memset(b.categoria, 0, sizeof(b.categoria));
-
     while (*ptr != '\0') {
         if (*ptr == ' ' || (*ptr >= 'A' && *ptr <= 'Z')) {
-            *ptr = *ptr; 
             ptr++; 
         } else {
-            *ptr += 32;
+            *ptr -= 32;
             ptr++; 
         }
     }
+    printf("la cadena en mayusculas es: %s\n", nuevaCat);
 
-    strcpy(b.categoria, ptr);
+    strcpy(b.categoria, nuevaCat);
 
     if ((b.estado & (1 << 2)) != 0) {
+        fseek(fp, -sizeof(productos), SEEK_CUR);
         fwrite(&b, sizeof(productos), 1, fp);
         rewind(fp);
         fread(&b, sizeof(productos), 1, fp);
@@ -49,6 +52,7 @@ int ejercicio(long id) {
             idCont++; 
         }
     }
+
+    fclose(fp);
     return idCont++;
 }
-
