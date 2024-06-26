@@ -1,5 +1,6 @@
 #ifndef ESTRUCT_H
 #define ESTRUCT_H
+
 typedef struct productos {
     long id;
     char categoria[90];

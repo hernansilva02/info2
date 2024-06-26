@@ -5,11 +5,8 @@
 
 int ejercicio(long id) {
     productos b; 
-    char nuevaCat[90];
     char* ptr;
     int idCont = 0;
-
-    memset(nuevaCat, 0, sizeof(nuevaCat));
 
     FILE* fp = fopen("datos.dat", "rb+");
 
@@ -26,10 +23,8 @@ int ejercicio(long id) {
     }
 
     
-    strcpy(nuevaCat, b.categoria);
-    ptr = nuevaCat;
+    ptr = b.categoria;
 
-    memset(b.categoria, 0, sizeof(b.categoria));
     while (*ptr != '\0') {
         if (*ptr == ' ' || (*ptr >= 'A' && *ptr <= 'Z')) {
             ptr++; 
@@ -38,11 +33,11 @@ int ejercicio(long id) {
             ptr++; 
         }
     }
-    printf("la cadena en mayusculas es: %s\n", nuevaCat);
 
-    strcpy(b.categoria, nuevaCat);
+    printf("la cadena en mayusculas es: %s\n", b.categoria);
 
-    if ((b.estado & (1 << 2)) != 0) {
+
+    if ((b.estado & (1 << 2)) == 4) {
         fseek(fp, -sizeof(productos), SEEK_CUR);
         fwrite(&b, sizeof(productos), 1, fp);
         rewind(fp);
