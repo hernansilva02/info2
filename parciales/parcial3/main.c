@@ -35,14 +35,19 @@ int funcion(int tipo, char* archivo) {
 #include <string.h>
 
 int main() {
-    datos_t dato;
+    datos_t dato, lectura;
     int op = 0;
+    char* D = "decreciente.dat";
+    char* C = "creciente.dat";
+    long timestamp = 0;
 
     FILE* fp = fopen("temperatura.dat", "ab+");
+
     if (fp == NULL) {
         printf("No se pudo abrir el archivo\n");
         return 1;
     }
+
     do {
         printf("Ingresar timestamp: ");
         scanf("%ld", &dato.timestamp);
@@ -62,6 +67,8 @@ int main() {
         printf("\nIngresar tipo: ");
         scanf("%d", &dato.tipo);
 
+        dato.timestamp = timestamp;
+
         printf("\n");
 
         fwrite(&dato, sizeof(datos_t), 1, fp);
@@ -70,6 +77,14 @@ int main() {
 
         scanf("%d", &op);
     } while(op != 2);
+
+    while ((fread(&lectura, sizeof(datos_t), 1, fp) == 1)) {
+        if ((dato.tipo & (1 << 4)) != 0 && (dato.tipo & (1 << 6)) != 0) {
+            funcion(dato.tipo, C);
+        } else if ((dato.tipo & (1 << 3)) != 0 && (dato.tipo & (1 << 5)) != 0) {
+            funcion(dato.tipo, D);
+        }
+    }
 
 
 
