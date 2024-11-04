@@ -67,10 +67,6 @@ nodo_t* push(nodo_t* top, int cl) {
     return top;
 }
 
-class cpila {
-
-}
-
 int main(void) {
 
 

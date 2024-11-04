@@ -24,8 +24,8 @@ typedef struct datos_t {
     int cl;
     char d[30];
     int t;
-    unsigned int m;
-    int e;
+    char m;
+    unsigned int e;
 }datos_t;
 
 typedef struct nodo_t {
@@ -107,6 +107,4 @@ int main(void) {
     ob.despilar(top);
 
     return 0;
-
-
 }
